@@ -1,3 +1,6 @@
+##############
+# chapter 01 #
+##############
 # name: my workflow                     # Workflow 이름
 # on: [push]                            # Event 감지
 
@@ -12,6 +15,31 @@
 #       - name: echo Hello              # Step 이름
 #         run: echo "Hello"             # Run을 통한 스크립트 실행: Hello 출력
 
+##############
+# chapter 02 #
+##############
+# name: React build
+# on: 
+#   push:                               # master Branch에서 push 이벤트가 일어났을 때만 실행
+#     branches:
+#       - master
+
+# jobs:
+#   build:
+#     runs-on: ubuntu-18.04
+#     steps:
+#       - name: Checkout source code.   # 레포지토리 체크아웃
+#         uses: actions/checkout@master
+
+#       - name: Install Dependencies    # 의존 파일 설치
+#         run: npm install
+
+#       - name: Build                   # React Build
+#         run: npm run build
+
+##############
+# chapter 03 #
+##############
 name: React build
 on: 
   push:                               # master Branch에서 push 이벤트가 일어났을 때만 실행
@@ -25,8 +53,18 @@ jobs:
       - name: Checkout source code.   # 레포지토리 체크아웃
         uses: actions/checkout@master
 
+      - name: Cache node modules      # node modules 캐싱
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-build-
+            ${{ runner.OS }}-
+
       - name: Install Dependencies    # 의존 파일 설치
         run: npm install
 
       - name: Build                   # React Build
         run: npm run build
+        
