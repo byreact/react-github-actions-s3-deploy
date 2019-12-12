@@ -39,13 +39,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/byreact/react-github-action-s3-build.git"
-  },
-  "bugs": {
-    "url": "https://github.com/byreact/react-github-action-s3-build/issues"
-  },
-  "homepage": "https://github.com/byreact/react-github-action-s3-build#readme"
+  }
 }
