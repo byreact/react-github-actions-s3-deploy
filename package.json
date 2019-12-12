@@ -2,6 +2,20 @@
   "name": "react-github-action-tutorial",
   "version": "0.1.0",
   "private": true,
+  "description": "Github Actions + React + AWS S3 Build",
+  "author": "AGUMON",
+  "license": "ISC",
+  "keywords": [
+    "Github Actions",
+    "React",
+    "AWS S3"
+  ],
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
@@ -10,12 +24,7 @@
     "react-dom": "^16.12.0",
     "react-scripts": "3.3.0"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
+  "devDependencies": {},
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -30,5 +39,13 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/byreact/react-github-action-s3-build.git"
+  },
+  "bugs": {
+    "url": "https://github.com/byreact/react-github-action-s3-build/issues"
+  },
+  "homepage": "https://github.com/byreact/react-github-action-s3-build#readme"
 }

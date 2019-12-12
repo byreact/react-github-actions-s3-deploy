@@ -1,0 +1,78 @@
+## Workflow 실행
+
+```sh
+ name: my workflow                           # Workflow 이름
+ on: [push]                                  # Event 감지
+
+ jobs:                                       # Job 설정
+   build:                                    # Job ID
+     name: hello github action               # Job 이름
+     runs-on: ubuntu-18.04                   # Job 가상환경 인스턴스
+     steps:                                  # Steps
+       - name: checkout source code          # Step 이름
+         uses: actions/checkout@master       # Uses를 통한 외부 설정 가져오기: 자신의 레포지토리 소스 받아오기
+
+       - name: echo Hello React              # Step 이름
+         run: echo "Hello, React"            # Run을 통한 스크립트 실행: Hello, React 출력
+```
+
+<br />
+<hr />
+
+## checkout을 이용하여 레포 소스 가져오기
+
+```sh
+ name: checkout Build
+ on: 
+   push:                                     # master Branch에서 push 이벤트가 일어났을 때만 실행
+     branches:
+       - master
+
+ jobs:
+   build:
+     runs-on: ubuntu-18.04
+     steps:
+       - name: Checkout source code.         # 레포지토리 체크아웃
+         uses: actions/checkout@master
+
+       - name: Install Dependencies          # 의존 파일 설치
+         run: npm install
+
+       - name: Build                         # 빌드
+         run: npm run build
+```
+
+<br />
+<hr />
+
+## cache을 이용하여 의존성 설치 시간 감소
+
+```sh
+ name: node_modules cache Build 
+ on: 
+   push:                                      # master Branch에서 push 이벤트가 일어났을 때만 실행
+     branches:
+       - master
+
+ jobs:
+   build:
+     runs-on: ubuntu-18.04
+     steps:
+       - name: Checkout source code.          # 레포지토리 체크아웃
+         uses: actions/checkout@master
+
+       - name: Cache node modules             # node modules 캐싱
+         uses: actions/cache@v1
+         with:
+           path: node_modules
+           key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
+           restore-keys: |
+             ${{ runner.OS }}-build-
+             ${{ runner.OS }}-
+
+       - name: Install Dependencies           # 의존 파일 설치
+         run: npm install
+
+       - name: Build                          # 빌드
+         run: npm run build
+```
