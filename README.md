@@ -9,6 +9,8 @@ Tech Stack
 
 * [AWS S3](https://aws.amazon.com/ko/s3/)
 
+* [AWS IAM](https://aws.amazon.com/ko/iam/)
+
 Blog
 ----
 
