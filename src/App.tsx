@@ -7,7 +7,7 @@ const App: React.FC = () => {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>React + Github Actions + S3 Build</p>
+        <p>React + TypeScript + Github Actions + S3 Build</p>
       </header>
     </div>
   );
