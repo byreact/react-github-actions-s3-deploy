@@ -1,29 +1,78 @@
-## Github Actions + React + AWS S3 Build
+<img src='https://github.com/byreact/react-github-action-s3-build/raw/master/screenshots/architecture.png' border='0' alt='architecture' />
 
-![](./github-actions-s3-build.png)
+Implementation of automated distribution through [aws](https://aws.amazon.com/ko/) product [s3](https://aws.amazon.com/ko/ecs/)
 
-> Create smart AWS diagrams [Cloudcraft](https://cloudcraft.co/)
+> Create smart aws diagrams [Cloudcraft](https://cloudcraft.co/)
 
-Tech Stack
-----------
+<br />
 
-* [React](https://reactjs-kr.firebaseapp.com/)
+## What is AWS ?
 
-* [Github Actions](https://github.com/features/actions)
+Whether you're looking for compute power, database storage, content delivery, or other features with services operated by Amazon, 
 
-* [AWS S3](https://aws.amazon.com/ko/s3/)
+AWS has services to help you build sophisticated applications with increased flexibility, scalability, and reliability.
 
-* [AWS IAM](https://aws.amazon.com/ko/iam/)
+## What is S3 ?
 
-Blog
-----
+Amazon Simple Storage Service (Amazon S3) is an object storage service that offers industry-leading scalability, data availability, security, and performance.
 
-* Github Actions + React + S3
+This means customers of all sizes and industries can use it to store and protect any amount of data for a range of use cases, such as websites, mobile applications, backup and restore, archive, enterprise applications, IoT devices, and big data analytics.
 
-    * [1탄, React 프로젝트 생성 및 Github Action 시작하기](https://ljlm0402.netlify.com/project/github-action/1/)
+▾ Amazon S3 works
 
-    * [2탄, React Build, Github Action Cache](https://ljlm0402.netlify.com/project/github-action/2/)
+<img src='https://github.com/byreact/react-github-action-s3-build/raw/master/screenshots/s3-works.png' border='0' alt='s3-works' />
 
-    * [3탄, AWS S3 정적 사이트 설정 및 React 배포](https://ljlm0402.netlify.com/project/github-action/3/)
+## Continuous Deployment with Github Actions
 
-> [Demo Site](http://github-action-react-build-tutorial.s3-website.ap-northeast-2.amazonaws.com)
+### Add a Workflows File to Your Source Repository
+
+Github Actions to build your workflows yml files.
+
+Add a `build.yml` file to your source code repository to tell Github Actions.
+
+[GitHub Actions](https://github.com/features/actions)
+
+▾ build.yml
+
+```bash
+name: React S3 Build
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@master
+
+      - name: Cache node modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-build-
+            ${{ runner.OS }}-
+
+      - name: Install
+        run: npm install
+
+      - name: Test
+        run: npm run test
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: |
+          aws s3 cp \
+            --recursive \
+            --region ap-northeast-2 \
+            build s3://github-action-react-build-tutorial
+```

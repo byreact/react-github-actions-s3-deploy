@@ -1,9 +1,9 @@
 {
-  "name": "react-github-action-tutorial",
+  "name": "react-github-action-s3-build",
   "version": "0.1.0",
   "private": true,
   "description": "Github Actions + React + AWS S3 Build",
-  "author": "AGUMON",
+  "author": "AGUMON <ljlm0402@gmail.com>",
   "license": "ISC",
   "keywords": [
     "Github Actions",
