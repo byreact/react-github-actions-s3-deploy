@@ -1,6 +1,6 @@
-<img src='https://github.com/byreact/react-github-action-s3-build/raw/master/screenshots/architecture.png' border='0' alt='architecture' />
+<img src='https://github.com/byreact/images/raw/master/s3-github-action/architecture.png' border='0' alt='architecture' />
 
-Implementation of automated distribution through [aws](https://aws.amazon.com/ko/) product [s3](https://aws.amazon.com/ko/ecs/)
+Implementing automatic distribution of [AWS](https://aws.amazon.com/ko/) product [S3](https://aws.amazon.com/ko/s3/) through [GitHub Actions](https://github.com/features/actions) operation.
 
 > Create smart aws diagrams [Cloudcraft](https://cloudcraft.co/)
 
@@ -20,7 +20,13 @@ This means customers of all sizes and industries can use it to store and protect
 
 ▾ Amazon S3 works
 
-<img src='https://github.com/byreact/react-github-action-s3-build/raw/master/screenshots/s3-works.png' border='0' alt='s3-works' />
+<img src='https://github.com/byreact/images/raw/master/s3-github-action/s3-works.png' border='0' alt='s3-works' />
+
+## What is GitHub Actions ?
+
+GitHub Actions makes it easy to automate all your software workflows, now with world-class CI/CD. Build, test, and deploy your code right from GitHub. 
+
+Make code reviews, branch management, and issue triaging work the way you want.
 
 ## Continuous Deployment with Github Actions
 
@@ -28,7 +34,7 @@ This means customers of all sizes and industries can use it to store and protect
 
 Github Actions to build your workflows yml files.
 
-Add a `build.yml` file to your source code repository to tell Github Actions.
+Add a `*.yml` file to your source code repository to tell Github Actions.
 
 [GitHub Actions](https://github.com/features/actions)
 
