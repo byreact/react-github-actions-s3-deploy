@@ -1,4 +1,4 @@
-name: React S3 Build
+name: S3 Deploy
 on:
   push:
     branches:
@@ -20,7 +20,7 @@ jobs:
             ${{ runner.OS }}-build-
             ${{ runner.OS }}-
 
-      - name: Install npm
+      - name: Install
         run: npm install
 
       - name: Test
@@ -39,7 +39,7 @@ jobs:
             --region ap-northeast-2 \
             build s3://github-action-react-build-tutorial
 
-      - name: action-slack
+      - name: Notification
         uses: 8398a7/action-slack@v2.6.0
         with:
           status: ${{ job.status }}

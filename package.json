@@ -1,15 +1,15 @@
 {
-  "name": "react-github-action-s3-build",
+  "name": "react-github-action-s3-deploy",
   "version": "0.0.0",
   "private": true,
-  "description": "Github Actions + React + AWS S3 Build",
+  "description": "React + Github Actions + S3 Deploy",
   "author": "AGUMON <ljlm0402@gmail.com>",
   "license": "ISC",
   "keywords": [
-    "Github Actions",
-    "React",
     "TypeScript",
-    "AWS S3"
+    "React",
+    "Github Actions",
+    "S3"
   ],
   "scripts": {
     "start": "react-scripts start",
